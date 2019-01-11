@@ -1,4 +1,4 @@
-import React, { ReactComponent } from "react";
+import React from "react";
 
 import dynamics from "dynamics.js";
 import classie from "classie";
