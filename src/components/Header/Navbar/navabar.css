@@ -1,0 +1,210 @@
+/* NAVBAR */
+.navbar {
+  width: 100%;
+  float: left;
+  display: block;
+  padding: 15px 5%;
+  padding-top: 20px;
+  text-align: center;
+  position: relative;
+  z-index: 9;
+  -webkit-transition: 0.25s ease-in-out;
+  -moz-transition: 0.25s ease-in-out;
+  -ms-transition: 0.25s ease-in-out;
+  -o-transition: 0.25s ease-in-out;
+  transition: 0.25s ease-in-out;
+  background: url(../../../assets/images/rainbow-bar.png) top repeat-x;
+  background-size: auto 5px;
+}
+.navbar:after {
+  content: "";
+  width: 70%;
+  height: 1px;
+  background: #fff;
+  opacity: 0.2;
+  position: absolute;
+  left: 15%;
+  bottom: 0;
+}
+.navbar.stick-me {
+  position: fixed;
+  background: url(../../../assets/images/rainbow-bar.png) top repeat-x #fff;
+  background-size: auto 5px;
+  z-index: 9;
+}
+.navbar.stick-me .logo .logo-colored {
+  display: block !important;
+}
+.navbar.stick-me .logo .logo-light {
+  display: none;
+}
+.navbar.stick-me .navbar-nav .nav-item .nav-link {
+  color: #99a4be;
+}
+.navbar.stick-me .search-btn {
+  background: #99a4be;
+  -webkit-mask-image: url(../../../assets/images/search-icon.svg);
+  mask-image: url(../../../assets/images/search-icon.svg);
+}
+.navbar.stick-me .custom-btn {
+  background: #99a4be;
+  color: #fff;
+}
+.navbar.stick-me .hamburger-menu span {
+  background: #99a4be;
+}
+.navbar .logo {
+  float: left;
+}
+.navbar .logo .logo-colored {
+  display: none;
+}
+.navbar .logo a {
+  float: left;
+}
+.navbar .logo a img {
+  float: left;
+  height: 50px;
+}
+.navbar .hamburger-menu {
+  float: right;
+  margin-left: 5px;
+  margin-top: 2px;
+}
+.navbar .search-btn {
+  float: right;
+  width: 32px;
+  height: 32px;
+  background: #fff;
+  -webkit-mask-image: url(../../../assets/images/search-icon.svg);
+  mask-image: url(../../../assets/images/search-icon.svg);
+  margin-top: 8px;
+  margin-left: 20px;
+  cursor: pointer;
+}
+.navbar .search-btn img {
+  width: 34px;
+}
+.navbar .custom-btn {
+  float: right;
+  height: 40px;
+  line-height: 42px;
+  background: #fff;
+  padding: 0 35px;
+  border-radius: 40px;
+  margin-top: 6px;
+  color: #99a4be;
+  font-size: 13px;
+  font-weight: 600;
+}
+.navbar .custom-btn:hover {
+  text-decoration: none;
+  background: #fed20f;
+  color: #fff;
+}
+.navbar .navbar-nav {
+  height: 45px;
+  line-height: 52px;
+  display: inline-block;
+  margin-left: 50px;
+  position: relative;
+  z-index: 2;
+}
+.navbar .navbar-nav .nav-item {
+  float: left;
+  margin: 0 5px;
+  padding: 0 5px;
+  position: relative;
+}
+.navbar .navbar-nav .nav-item ul {
+  width: 160px;
+  margin: 0;
+  padding: 10px 0;
+  position: absolute;
+  left: 0;
+  top: calc(100% + 12px);
+  background: #fff;
+  text-align: left;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.05);
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: 0.25s ease-in-out;
+  -moz-transition: 0.25s ease-in-out;
+  -ms-transition: 0.25s ease-in-out;
+  -o-transition: 0.25s ease-in-out;
+  transition: 0.25s ease-in-out;
+}
+.navbar .navbar-nav .nav-item ul:before {
+  content: "";
+  width: 100%;
+  height: 13px;
+  position: absolute;
+  left: 0;
+  top: -13px;
+}
+.navbar .navbar-nav .nav-item ul li {
+  width: 100%;
+  float: left;
+  line-height: 36px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  padding: 0 15px;
+}
+.navbar .navbar-nav .nav-item ul li a {
+  width: 100%;
+  float: left;
+  color: #99a4be;
+  font-size: 13px;
+  font-weight: 600;
+}
+.navbar .navbar-nav .nav-item ul li a:hover {
+  text-decoration: none;
+  color: #fed20f;
+}
+.navbar .navbar-nav .nav-item .nav-link {
+  padding: 0 10px;
+  font-weight: 600;
+  font-size: 13px;
+  color: #fff;
+  border-bottom: 1px solid transparent;
+}
+.navbar .navbar-nav .nav-item .nav-link:hover {
+  text-decoration: none;
+  color: #fed20f;
+}
+.navbar .navbar-nav .nav-item .nav-link:before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: -13px;
+  height: 1px;
+  width: 0;
+  transition: width 0s ease, background 0.25s ease;
+}
+.navbar .navbar-nav .nav-item .nav-link:after {
+  content: "";
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: -13px;
+  height: 1px;
+  width: 0;
+  background: #fff;
+  transition: width 0.25s ease;
+}
+.navbar .navbar-nav .nav-item .nav-link:hover:before {
+  width: 100%;
+  background: #fff;
+  transition: width 0.25s ease;
+}
+.navbar .navbar-nav .nav-item .nav-link:hover:after {
+  width: 100%;
+  background: transparent;
+  transition: all 0s ease;
+}
+.navbar .navbar-nav .nav-item:hover ul {
+  opacity: 1;
+  visibility: visible;
+}

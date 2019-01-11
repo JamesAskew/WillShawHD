@@ -1,12 +1,17 @@
 import React, { Component } from "react";
-import "./App.css";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
-import Header from "./components/Header/Header";
-import Home from "./components/Home/Home";
-import About from "./components/About/About";
-import Portfolio from "./components/Portfolio/Portfolio";
-import Contact from "./components/Contact/Contact";
+import "./assets/css/odometer.min.css";
+import "./assets/css/fancybox.min.css";
+import "./assets/css/swiper.min.css";
+import "./assets/css/isolayer.css";
+import "./assets/css/bootstrap.min.css";
+import "./App.css";
+
+import Home from "./components/pages/Home/Home";
+import About from "./components/pages/About/About";
+import Portfolio from "./components/pages/Portfolio/Portfolio";
+import Contact from "./components/pages/Contact/Contact";
 import Footer from "./components/Footer/Footer";
 
 class App extends Component {
@@ -14,13 +19,11 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Header />
-          <div>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/about" component={About} />
-            <Route exact path="/portfolio" component={Portfolio} />
-            <Route exact path="/contact" component={Contact} />
-          </div>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/about" component={About} />
+          <Route exact path="/portfolio" component={Portfolio} />
+          <Route exact path="/contact" component={Contact} />
+
           <Footer />
         </div>
       </Router>
