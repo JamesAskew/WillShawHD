@@ -7,7 +7,6 @@ const Home = () => {
   return (
     <div>
       <Header>
-        <p>Children go here</p>
         <PortfolioHeader />
       </Header>
     </div>
