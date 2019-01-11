@@ -8,7 +8,7 @@ import Masonry from "isotope-layout";
 
 import "../../../assets/css/isolayer.css";
 
-class PortfolioHeader extends React.Component {
+class PortfolioHero extends React.Component {
   componentDidMount() {
     function getComputedTranslateY(obj) {
       if (!window.getComputedStyle) return;
@@ -349,12 +349,8 @@ class PortfolioHeader extends React.Component {
     return (
       <div>
         <div className="inner">
-          <h2>IDEA FACTORY</h2>
-          <p>
-            Coddle is a commercial web and digital agency, known for unique
-            conceptual images and ideas. His interest in satire and narrative
-            influences his work behind the camera.
-          </p>
+          <h2>WILL SHAW</h2>
+          <p>Videographer | Editor | Photographer</p>
           <a href="https://www.google.com/" className="ghost-btn">
             <svg>
               <defs>
@@ -625,4 +621,4 @@ class PortfolioHeader extends React.Component {
   }
 }
 
-export default PortfolioHeader;
+export default PortfolioHero;

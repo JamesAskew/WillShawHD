@@ -1,13 +1,13 @@
 import React from "react";
 
 import Header from "../../Header/Header";
-import PortfolioHeader from "../../Header/PortfolioHeader/PortfolioHeader";
+import PortfolioHero from "../../Header/PortfolioHero/PortfolioHero";
 
 const Home = () => {
   return (
     <div>
       <Header>
-        <PortfolioHeader />
+        <PortfolioHero />
       </Header>
     </div>
   );

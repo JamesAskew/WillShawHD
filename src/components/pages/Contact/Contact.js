@@ -1,10 +1,11 @@
 import React from "react";
 import Header from "../../Header/Header";
+import SimpleHero from "../../Header/SimpleHero/SimpleHero";
 
 const Contact = () => {
   return (
-    <Header>
-      <p>Contact header goes here</p>
+    <Header SimpleHero={true}>
+      <SimpleHero Title="GET IN TOUCH" Summary="" />
     </Header>
   );
 };

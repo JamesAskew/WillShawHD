@@ -1,10 +1,11 @@
 import React from "react";
 import Header from "../../Header/Header";
+import SimpleHero from "../../Header/SimpleHero/SimpleHero";
 
 const Portfolio = () => {
   return (
-    <Header>
-      <p>Portfolio header goes here</p>
+    <Header SimpleHero={true}>
+      <SimpleHero Title="PORTFOLIO" />
     </Header>
   );
 };
