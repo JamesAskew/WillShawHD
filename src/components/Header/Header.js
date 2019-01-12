@@ -2,6 +2,8 @@ import React from "react";
 import Navbar from "./Navbar/Navbar";
 import "./header.css";
 
+import HamburgerContent from "../functional/HamburgerContent/HamburgerContent";
+
 const Header = props => {
   const classes = ["header"];
   if (props.SimpleHero) {
@@ -10,7 +12,11 @@ const Header = props => {
 
   return (
     <header className={classes.join(" ")}>
-      <Navbar />
+      <Navbar toggleMenu={props.toggleMenu} showMenu={props.showMenu} />
+      {/* <HamburgerContent
+        showMenu={props.showMenu}
+        toggleMenu={props.toggleMenu}
+      /> */}
       {props.children}
     </header>
   );

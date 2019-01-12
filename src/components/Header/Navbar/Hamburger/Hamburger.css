@@ -1,0 +1,70 @@
+/* HAMBURGER MENU */
+.hamburger-menu {
+  width: 46px;
+  height: 46px;
+  float: right;
+  position: relative;
+  cursor: pointer;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  transition-duration: 500ms;
+  -webkit-transition-duration: 500ms;
+  transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
+  -webkit-transition-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
+  border-radius: 50%;
+  display: none;
+}
+.hamburger-menu span {
+  display: block;
+  height: 2px;
+  width: 22px;
+  background: #fff;
+  opacity: 1;
+  position: absolute;
+  right: 12px;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: 0.25s ease-in-out;
+  -moz-transition: 0.25s ease-in-out;
+  -o-transition: 0.25s ease-in-out;
+  transition: 0.25s ease-in-out;
+}
+.hamburger-menu span:nth-child(1) {
+  top: 15px;
+  width: 12px;
+  right: 17px;
+}
+.hamburger-menu span:nth-child(2) {
+  top: 22px;
+}
+.hamburger-menu span:nth-child(3) {
+  top: 29px;
+  width: 12px;
+  right: 17px;
+}
+.hamburger-menu:hover span {
+  width: 22px;
+  right: 12px;
+}
+.hamburger-menu.open span:nth-child(1) {
+  top: 22px;
+  -webkit-transform: rotate(135deg);
+  -moz-transform: rotate(135deg);
+  -o-transform: rotate(135deg);
+  transform: rotate(135deg);
+}
+.hamburger-menu.open span:nth-child(2) {
+  opacity: 0;
+  right: -10px;
+}
+.hamburger-menu.open span:nth-child(3) {
+  top: 22px;
+  -webkit-transform: rotate(-135deg);
+  -moz-transform: rotate(-135deg);
+  -o-transform: rotate(-135deg);
+  transform: rotate(-135deg);
+}

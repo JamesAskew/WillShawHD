@@ -1,59 +1,59 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { Component } from "react";
+
 import "./navabar.css";
 import LightLogo from "../../../assets/images/logo-light.png";
 import ColouredLogo from "../../../assets/images/logo-colored.png";
+import Hamburger from "./Hamburger/Hamburger";
+import MenuLinks from "../../functional/MenuLinks/MenuLinks";
 
-const Navbar = () => {
-  return (
-    <nav className="navbar">
-      <div className="logo">
-        <a href="index.html" className="transition">
-          <img src={LightLogo} alt="React logo" className="logo-light" />
-          <img src={ColouredLogo} alt="React logo" className="logo-colored" />
-        </a>
+import HamburgerContent from "../../functional/HamburgerContent/HamburgerContent";
+
+class Navbar extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showMenu: false
+    };
+
+    this.toggleMenu = this.toggleMenu.bind(this);
+  }
+
+  toggleMenu() {
+    this.setState(prevState => {
+      return { showMenu: !prevState.showMenu };
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        <HamburgerContent
+          showMenu={this.state.showMenu}
+          toggleMenu={this.toggleMenu}
+        />
+        <nav className="navbar">
+          <div className="logo">
+            <a href="index.html" className="transition">
+              <img src={LightLogo} alt="React logo" className="logo-light" />
+              <img
+                src={ColouredLogo}
+                alt="React logo"
+                className="logo-colored"
+              />
+            </a>
+          </div>
+
+          <Hamburger
+            toggleMenu={this.toggleMenu}
+            showMenu={this.state.showMenu}
+          />
+
+          <MenuLinks />
+        </nav>
       </div>
-
-      <div className="hamburger-menu">
-        <span /> <span /> <span />
-      </div>
-
-      <ul className="navbar-nav">
-        <li className="nav-item">
-          <Link to="/" className="nav-link transition">
-            HOME
-          </Link>
-          <ul>
-            <li>
-              <a href="#" className="transition">
-                PORTFOlIO GRID
-              </a>
-            </li>
-            <li>
-              <a href="#" className="transition">
-                VIDEO
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li className="nav-item">
-          <Link to="/about" className="nav-link transition">
-            ABOUT
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link to="/portfolio" className="nav-link transition">
-            PORTFOlIO
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link to="/contact" className="nav-link transition">
-            CONTACT
-          </Link>
-        </li>
-      </ul>
-    </nav>
-  );
-};
+    );
+  }
+}
 
 export default Navbar;

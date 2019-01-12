@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 
 import dynamics from "dynamics.js";
 import classie from "classie";
@@ -8,8 +8,20 @@ import Masonry from "isotope-layout";
 
 import "../../../assets/css/isolayer.css";
 
-class PortfolioHero extends React.Component {
+class PortfolioHero extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      classes: ["isolayer", "isolayer--deco1", "isolayer--shadow"],
+      updated: false
+    };
+  }
+
   componentDidMount() {
+    // debugger;
+    console.log("portfolio hero - componentDidMount()");
+
     function getComputedTranslateY(obj) {
       if (!window.getComputedStyle) return;
       var style = getComputedStyle(obj),
@@ -57,6 +69,8 @@ class PortfolioHero extends React.Component {
       };
     }
 
+    console.log("about to set state");
+
     var docElem = window.document.documentElement;
 
     // some helper functions
@@ -72,6 +86,19 @@ class PortfolioHero extends React.Component {
       }
       return a;
     }
+
+    const please = () => {
+      console.log("please");
+      this.setState(prevState => {
+        const currentClasses = prevState.classes;
+        currentClasses.push("visible");
+
+        return {
+          classes: currentClasses,
+          updated: true
+        };
+      });
+    };
 
     function IsoGrid(el, options) {
       this.isolayerEl = el;
@@ -95,6 +122,8 @@ class PortfolioHero extends React.Component {
         this.didscroll = false;
 
         this._init();
+
+        //please();
       }
     }
 
@@ -235,6 +264,7 @@ class PortfolioHero extends React.Component {
           item.addEventListener("mouseenter", mouseenterHandler);
           item.addEventListener("mouseleave", mouseleaveHandler);
         });
+        please();
       };
       IsoGrid.prototype._expandSubItems = function(item) {
         var self = this,
@@ -343,11 +373,27 @@ class PortfolioHero extends React.Component {
         }
       }
     });
+    // this.setState(prevState => {
+    //   const currentClasses = prevState.classes;
+    //   currentClasses.push("visible");
+
+    //   return {
+    //     classes: currentClasses,
+    //     updated: true
+    //   };
+    // });
   }
 
+  // shouldComponentUpdate() {
+  //   return false;
+  // }
   render() {
+    console.log("portfolio hero - render()");
+
     return (
       <div>
+        {this.state.updated ? <p>loaded</p> : <p>loading</p>}
+
         <div className="inner">
           <h2>WILL SHAW</h2>
           <p>Videographer | Editor | Photographer</p>
@@ -355,8 +401,8 @@ class PortfolioHero extends React.Component {
             <svg>
               <defs>
                 <linearGradient>
-                  <stop offset="0%" stop-color="#FF8282" />
-                  <stop offset="100%" stop-color="#E178ED" />
+                  <stop offset="0%" stopColor="#FF8282" />
+                  <stop offset="100%" stopColor="#E178ED" />
                 </linearGradient>
               </defs>
               <rect
@@ -372,7 +418,7 @@ class PortfolioHero extends React.Component {
             <span>Discover Now</span>
           </a>
         </div>
-        <div className="isolayer isolayer--deco1 isolayer--shadow">
+        <div className={this.state.classes.join(" ")}>
           <ul className="gridy">
             <li className="grid__item">
               <a className="grid__link" href="https://www.google.com/">
