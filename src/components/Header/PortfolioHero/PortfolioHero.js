@@ -8,6 +8,8 @@ import Masonry from "isotope-layout";
 
 import "../../../assets/css/isolayer.css";
 
+import imgOne from "../../../assets/images/thumbnails/isolayer10.jpg";
+
 class PortfolioHero extends Component {
   constructor(props) {
     super(props);
@@ -425,11 +427,55 @@ class PortfolioHero extends Component {
                 <div className="layer" />
                 <div className="layer" />
                 <div className="layer" />
-                <img
-                  className="grid__img layer"
-                  src="images/isolayer1.jpg"
-                  alt="image"
-                />
+                <img className="grid__img layer" src={imgOne} alt="image" />
+              </a>
+            </li>
+            <li className="grid__item">
+              <a className="grid__link" href="https://www.google.com/">
+                <div className="layer" />
+                <div className="layer" />
+                <div className="layer" />
+                <img className="grid__img layer" src={imgOne} alt="02" />
+              </a>
+            </li>
+            <li className="grid__item">
+              <a className="grid__link" href="https://www.google.com/">
+                <div className="layer" />
+                <div className="layer" />
+                <div className="layer" />
+                <img className="grid__img layer" src={imgOne} alt="02" />
+              </a>
+            </li>
+            <li className="grid__item">
+              <a className="grid__link" href="https://www.google.com/">
+                <div className="layer" />
+                <div className="layer" />
+                <div className="layer" />
+                <img className="grid__img layer" src={imgOne} alt="02" />
+              </a>
+            </li>
+            <li className="grid__item">
+              <a className="grid__link" href="https://www.google.com/">
+                <div className="layer" />
+                <div className="layer" />
+                <div className="layer" />
+                <img className="grid__img layer" src={imgOne} alt="02" />
+              </a>
+            </li>
+            <li className="grid__item">
+              <a className="grid__link" href="https://www.google.com/">
+                <div className="layer" />
+                <div className="layer" />
+                <div className="layer" />
+                <img className="grid__img layer" src={imgOne} alt="02" />
+              </a>
+            </li>
+            <li className="grid__item">
+              <a className="grid__link" href="https://www.google.com/">
+                <div className="layer" />
+                <div className="layer" />
+                <div className="layer" />
+                <img className="grid__img layer" src={imgOne} alt="02" />
               </a>
             </li>
             <li className="grid__item">
@@ -439,79 +485,7 @@ class PortfolioHero extends Component {
                 <div className="layer" />
                 <img
                   className="grid__img layer"
-                  src="images/isolayer2.jpg"
-                  alt="02"
-                />
-              </a>
-            </li>
-            <li className="grid__item">
-              <a className="grid__link" href="https://www.google.com/">
-                <div className="layer" />
-                <div className="layer" />
-                <div className="layer" />
-                <img
-                  className="grid__img layer"
-                  src="images/isolayer3.jpg"
-                  alt="02"
-                />
-              </a>
-            </li>
-            <li className="grid__item">
-              <a className="grid__link" href="https://www.google.com/">
-                <div className="layer" />
-                <div className="layer" />
-                <div className="layer" />
-                <img
-                  className="grid__img layer"
-                  src="images/isolayer4.jpg"
-                  alt="02"
-                />
-              </a>
-            </li>
-            <li className="grid__item">
-              <a className="grid__link" href="https://www.google.com/">
-                <div className="layer" />
-                <div className="layer" />
-                <div className="layer" />
-                <img
-                  className="grid__img layer"
-                  src="images/isolayer5.jpg"
-                  alt="02"
-                />
-              </a>
-            </li>
-            <li className="grid__item">
-              <a className="grid__link" href="https://www.google.com/">
-                <div className="layer" />
-                <div className="layer" />
-                <div className="layer" />
-                <img
-                  className="grid__img layer"
-                  src="images/isolayer6.jpg"
-                  alt="02"
-                />
-              </a>
-            </li>
-            <li className="grid__item">
-              <a className="grid__link" href="https://www.google.com/">
-                <div className="layer" />
-                <div className="layer" />
-                <div className="layer" />
-                <img
-                  className="grid__img layer"
-                  src="images/isolayer7.jpg"
-                  alt="02"
-                />
-              </a>
-            </li>
-            <li className="grid__item">
-              <a className="grid__link" href="https://www.google.com/">
-                <div className="layer" />
-                <div className="layer" />
-                <div className="layer" />
-                <img
-                  className="grid__img layer"
-                  src="images/isolayer8.jpg"
+                  src="../../../assets/images/thumbnails/Changin-Plants-4-300x188.png"
                   alt="02"
                 />
               </a>
