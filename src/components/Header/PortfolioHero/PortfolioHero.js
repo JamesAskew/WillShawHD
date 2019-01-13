@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 
 import dynamics from "dynamics.js";
 import classie from "classie";
@@ -8,8 +8,22 @@ import Masonry from "isotope-layout";
 
 import "../../../assets/css/isolayer.css";
 
-class PortfolioHero extends React.Component {
+import imgOne from "../../../assets/images/thumbnails/isolayer10.jpg";
+
+class PortfolioHero extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      classes: ["isolayer", "isolayer--deco1", "isolayer--shadow"],
+      updated: false
+    };
+  }
+
   componentDidMount() {
+    // debugger;
+    console.log("portfolio hero - componentDidMount()");
+
     function getComputedTranslateY(obj) {
       if (!window.getComputedStyle) return;
       var style = getComputedStyle(obj),
@@ -57,6 +71,8 @@ class PortfolioHero extends React.Component {
       };
     }
 
+    console.log("about to set state");
+
     var docElem = window.document.documentElement;
 
     // some helper functions
@@ -72,6 +88,19 @@ class PortfolioHero extends React.Component {
       }
       return a;
     }
+
+    const please = () => {
+      console.log("please");
+      this.setState(prevState => {
+        const currentClasses = prevState.classes;
+        currentClasses.push("visible");
+
+        return {
+          classes: currentClasses,
+          updated: true
+        };
+      });
+    };
 
     function IsoGrid(el, options) {
       this.isolayerEl = el;
@@ -95,6 +124,8 @@ class PortfolioHero extends React.Component {
         this.didscroll = false;
 
         this._init();
+
+        //please();
       }
     }
 
@@ -235,6 +266,7 @@ class PortfolioHero extends React.Component {
           item.addEventListener("mouseenter", mouseenterHandler);
           item.addEventListener("mouseleave", mouseleaveHandler);
         });
+        please();
       };
       IsoGrid.prototype._expandSubItems = function(item) {
         var self = this,
@@ -343,11 +375,27 @@ class PortfolioHero extends React.Component {
         }
       }
     });
+    // this.setState(prevState => {
+    //   const currentClasses = prevState.classes;
+    //   currentClasses.push("visible");
+
+    //   return {
+    //     classes: currentClasses,
+    //     updated: true
+    //   };
+    // });
   }
 
+  // shouldComponentUpdate() {
+  //   return false;
+  // }
   render() {
+    console.log("portfolio hero - render()");
+
     return (
       <div>
+        {this.state.updated ? <p>loaded</p> : <p>loading</p>}
+
         <div className="inner">
           <h2>WILL SHAW</h2>
           <p>Videographer | Editor | Photographer</p>
@@ -355,8 +403,8 @@ class PortfolioHero extends React.Component {
             <svg>
               <defs>
                 <linearGradient>
-                  <stop offset="0%" stop-color="#FF8282" />
-                  <stop offset="100%" stop-color="#E178ED" />
+                  <stop offset="0%" stopColor="#FF8282" />
+                  <stop offset="100%" stopColor="#E178ED" />
                 </linearGradient>
               </defs>
               <rect
@@ -372,18 +420,62 @@ class PortfolioHero extends React.Component {
             <span>Discover Now</span>
           </a>
         </div>
-        <div className="isolayer isolayer--deco1 isolayer--shadow">
+        <div className={this.state.classes.join(" ")}>
           <ul className="gridy">
             <li className="grid__item">
               <a className="grid__link" href="https://www.google.com/">
                 <div className="layer" />
                 <div className="layer" />
                 <div className="layer" />
-                <img
-                  className="grid__img layer"
-                  src="images/isolayer1.jpg"
-                  alt="image"
-                />
+                <img className="grid__img layer" src={imgOne} alt="image" />
+              </a>
+            </li>
+            <li className="grid__item">
+              <a className="grid__link" href="https://www.google.com/">
+                <div className="layer" />
+                <div className="layer" />
+                <div className="layer" />
+                <img className="grid__img layer" src={imgOne} alt="02" />
+              </a>
+            </li>
+            <li className="grid__item">
+              <a className="grid__link" href="https://www.google.com/">
+                <div className="layer" />
+                <div className="layer" />
+                <div className="layer" />
+                <img className="grid__img layer" src={imgOne} alt="02" />
+              </a>
+            </li>
+            <li className="grid__item">
+              <a className="grid__link" href="https://www.google.com/">
+                <div className="layer" />
+                <div className="layer" />
+                <div className="layer" />
+                <img className="grid__img layer" src={imgOne} alt="02" />
+              </a>
+            </li>
+            <li className="grid__item">
+              <a className="grid__link" href="https://www.google.com/">
+                <div className="layer" />
+                <div className="layer" />
+                <div className="layer" />
+                <img className="grid__img layer" src={imgOne} alt="02" />
+              </a>
+            </li>
+            <li className="grid__item">
+              <a className="grid__link" href="https://www.google.com/">
+                <div className="layer" />
+                <div className="layer" />
+                <div className="layer" />
+                <img className="grid__img layer" src={imgOne} alt="02" />
+              </a>
+            </li>
+            <li className="grid__item">
+              <a className="grid__link" href="https://www.google.com/">
+                <div className="layer" />
+                <div className="layer" />
+                <div className="layer" />
+                <img className="grid__img layer" src={imgOne} alt="02" />
               </a>
             </li>
             <li className="grid__item">
@@ -393,79 +485,7 @@ class PortfolioHero extends React.Component {
                 <div className="layer" />
                 <img
                   className="grid__img layer"
-                  src="images/isolayer2.jpg"
-                  alt="02"
-                />
-              </a>
-            </li>
-            <li className="grid__item">
-              <a className="grid__link" href="https://www.google.com/">
-                <div className="layer" />
-                <div className="layer" />
-                <div className="layer" />
-                <img
-                  className="grid__img layer"
-                  src="images/isolayer3.jpg"
-                  alt="02"
-                />
-              </a>
-            </li>
-            <li className="grid__item">
-              <a className="grid__link" href="https://www.google.com/">
-                <div className="layer" />
-                <div className="layer" />
-                <div className="layer" />
-                <img
-                  className="grid__img layer"
-                  src="images/isolayer4.jpg"
-                  alt="02"
-                />
-              </a>
-            </li>
-            <li className="grid__item">
-              <a className="grid__link" href="https://www.google.com/">
-                <div className="layer" />
-                <div className="layer" />
-                <div className="layer" />
-                <img
-                  className="grid__img layer"
-                  src="images/isolayer5.jpg"
-                  alt="02"
-                />
-              </a>
-            </li>
-            <li className="grid__item">
-              <a className="grid__link" href="https://www.google.com/">
-                <div className="layer" />
-                <div className="layer" />
-                <div className="layer" />
-                <img
-                  className="grid__img layer"
-                  src="images/isolayer6.jpg"
-                  alt="02"
-                />
-              </a>
-            </li>
-            <li className="grid__item">
-              <a className="grid__link" href="https://www.google.com/">
-                <div className="layer" />
-                <div className="layer" />
-                <div className="layer" />
-                <img
-                  className="grid__img layer"
-                  src="images/isolayer7.jpg"
-                  alt="02"
-                />
-              </a>
-            </li>
-            <li className="grid__item">
-              <a className="grid__link" href="https://www.google.com/">
-                <div className="layer" />
-                <div className="layer" />
-                <div className="layer" />
-                <img
-                  className="grid__img layer"
-                  src="images/isolayer8.jpg"
+                  src="../../../assets/images/thumbnails/Changin-Plants-4-300x188.png"
                   alt="02"
                 />
               </a>
