@@ -10,6 +10,22 @@ import "../../../assets/css/isolayer.css";
 
 import imgOne from "../../../assets/images/thumbnails/isolayer10.jpg";
 
+import {
+  IsoGrid,
+  RequestAnimationFrame,
+  isoGridProperties,
+  isoGridOptions2
+} from "./PortfolioHeroHelpers";
+
+import {
+  isoGridOptions,
+  isoGridInitEvents,
+  isoGridExpandSubItems,
+  isoGridCollapseSubItems,
+  isoGridScrollPage,
+  isoGridCreatePseudoScroller
+} from "./isoGridHelpers";
+
 class PortfolioHero extends Component {
   constructor(props) {
     super(props);
@@ -24,18 +40,6 @@ class PortfolioHero extends Component {
     // debugger;
     console.log("portfolio hero - componentDidMount()");
 
-    function getComputedTranslateY(obj) {
-      if (!window.getComputedStyle) return;
-      var style = getComputedStyle(obj),
-        transform =
-          style.transform || style.webkitTransform || style.mozTransform;
-      var mat = transform.match(/^matrix3d\((.+)\)$/);
-      if (mat) return parseFloat(mat[1].split(", ")[13]);
-      mat = transform.match(/^matrix\((.+)\)$/);
-      return mat ? parseFloat(mat[1].split(", ")[5]) : 0;
-    }
-
-    var lastTime = 0;
     var prefixes = "webkit moz ms o".split(" ");
     // get unprefixed rAF and cAF, if present
     var requestAnimationFrame = window.requestAnimationFrame;
@@ -56,37 +60,11 @@ class PortfolioHero extends Component {
     }
 
     if (!requestAnimationFrame || !cancelAnimationFrame) {
-      requestAnimationFrame = function(callback, element) {
-        var currTime = new Date().getTime();
-        var timeToCall = Math.max(0, 16 - (currTime - lastTime));
-        var id = window.setTimeout(function() {
-          callback(currTime + timeToCall);
-        }, timeToCall);
-        lastTime = currTime + timeToCall;
-        return id;
-      };
+      requestAnimationFrame = RequestAnimationFrame;
 
       cancelAnimationFrame = function(id) {
         window.clearTimeout(id);
       };
-    }
-
-    console.log("about to set state");
-
-    var docElem = window.document.documentElement;
-
-    // some helper functions
-    function scrollY() {
-      return window.pageYOffset || docElem.scrollTop;
-    }
-
-    function extend(a, b) {
-      for (var key in b) {
-        if (b.hasOwnProperty(key)) {
-          a[key] = b[key];
-        }
-      }
-      return a;
     }
 
     const please = () => {
@@ -102,84 +80,7 @@ class PortfolioHero extends Component {
       });
     };
 
-    function IsoGrid(el, options) {
-      this.isolayerEl = el;
-
-      this.options = extend({}, this.options);
-      extend(this.options, options);
-
-      if (!document.querySelector(".gridy")) {
-      } else {
-        this.gridEl = this.isolayerEl.querySelector(".gridy");
-      }
-
-      if (!document.querySelector(".grid__item")) {
-      } else {
-        // grid items
-        this.gridItems = [].slice.call(
-          this.gridEl.querySelectorAll(".grid__item")
-        );
-        this.gridItemsTotal = this.gridItems.length;
-
-        this.didscroll = false;
-
-        this._init();
-
-        //please();
-      }
-    }
-
-    IsoGrid.prototype.options = {
-      // static or scrollable
-      type: "static",
-      // grid perspective value
-      perspective: 0,
-      // grid transform
-      transform: "",
-      // each grid item animation (for the subitems)
-      stackItemsAnimation: {
-        // this follows the dynamics.js (https://github.com/michaelvillar/dynamics.js) animate fn syntax
-        // properties (pos is the current subitem position)
-        properties: function(pos) {
-          return {
-            translateZ: (pos + 1) * 50
-          };
-        },
-        // animation options (pos is the current subitem position); itemstotal is the total number of subitems
-        options: function(pos, itemstotal) {
-          return {
-            type: dynamics.bezier,
-            duration: 500,
-            points: [
-              {
-                x: 0,
-                y: 0,
-                cp: [
-                  {
-                    x: 0.2,
-                    y: 1
-                  }
-                ]
-              },
-              {
-                x: 1,
-                y: 1,
-                cp: [
-                  {
-                    x: 0.3,
-                    y: 1
-                  }
-                ]
-              }
-            ]
-          };
-        }
-      },
-      // callback for loaded grid
-      onGridLoaded: function() {
-        return false;
-      }
-    };
+    IsoGrid.prototype.options = isoGridOptions;
 
     IsoGrid.prototype._init = function() {
       var self = this;
@@ -231,164 +132,36 @@ class PortfolioHero extends Component {
       });
 
       IsoGrid.prototype._initEvents = function() {
-        var self = this;
-
-        var scrollHandler = function() {
-            requestAnimationFrame(function() {
-              if (!self.didscroll) {
-                self.didscroll = true;
-                self._scrollPage();
-              }
-            });
-          },
-          mouseenterHandler = function(ev) {
-            self._expandSubItems(ev.target);
-          },
-          mouseleaveHandler = function(ev) {
-            self._collapseSubItems(ev.target);
-          };
-
-        if (this.options.type === "scrollable") {
-          // update the transform (ty) on scroll
-          window.addEventListener("scroll", scrollHandler, false);
-          // on resize (layoutComplete for the masonry instance) recalculate height
-          this.msnry.on("layoutComplete", function(laidOutItems) {
-            // reset the height of the pseudoScroller (grid´s height + additional space between the top of the rotated isolayerEl and the page)
-            self.pseudoScrollerEl.style.height =
-              self.gridEl.offsetHeight +
-              self.isolayerEl.offsetTop * Math.sqrt(2) +
-              "px";
-            self._scrollPage();
-          });
-        }
-
-        this.gridItems.forEach(function(item) {
-          item.addEventListener("mouseenter", mouseenterHandler);
-          item.addEventListener("mouseleave", mouseleaveHandler);
-        });
+        isoGridInitEvents(this);
         please();
       };
       IsoGrid.prototype._expandSubItems = function(item) {
-        var self = this,
-          itemLink = item.querySelector("a"),
-          subItems = [].slice.call(itemLink.querySelectorAll(".layer")),
-          subItemsTotal = subItems.length;
-
-        itemLink.style.zIndex = item.style.zIndex = this.gridItemsTotal;
-
-        subItems.forEach(function(subitem, pos) {
-          dynamics.stop(subitem);
-          dynamics.animate(
-            subitem,
-            self.options.stackItemsAnimation.properties(pos),
-            self.options.stackItemsAnimation.options(pos, subItemsTotal)
-          );
-        });
+        isoGridExpandSubItems(this, item);
       };
 
       IsoGrid.prototype._collapseSubItems = function(item) {
-        var itemLink = item.querySelector("a");
-        [].slice
-          .call(itemLink.querySelectorAll(".layer"))
-          .forEach(function(subitem, pos) {
-            dynamics.stop(subitem);
-            dynamics.animate(
-              subitem,
-              {
-                translateZ: 0 // enough to reset any transform value previously set
-              },
-              {
-                duration: 100,
-                complete: function() {
-                  itemLink.style.zIndex = item.style.zIndex = 1;
-                }
-              }
-            );
-          });
+        isoGridCollapseSubItems(item);
       };
 
       IsoGrid.prototype._scrollPage = function() {
-        this.gridEl.style.WebkitTransform = this.gridEl.style.transform =
-          "translate3d(0,-" + scrollY() + "px,0)";
-        this.didscroll = false;
+        isoGridScrollPage(this);
       };
     };
 
     IsoGrid.prototype._createPseudoScroller = function() {
-      // element that will force the height for scrolling
-      this.pseudoScrollerEl = document.createElement("div");
-      this.pseudoScrollerEl.className = "pseudo-scroller";
-      // insert it inside the main container (same level of isolayerEl)
-      this.isolayerEl.parentNode.insertBefore(
-        this.pseudoScrollerEl,
-        this.isolayerEl
-      );
-      // set the height of the pseudoScroller (grid´s height + additional space between the top of the rotated isolayerEl and the page - value set for the translation on the Y axis)
-      this.pseudoScrollerEl.style.height =
-        this.gridEl.offsetHeight +
-        getComputedTranslateY(this.isolayerEl) * Math.sqrt(2) +
-        "px";
+      isoGridCreatePseudoScroller(this);
     };
-
-    function getRandomInt(min, max) {
-      return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
 
     new IsoGrid(document.querySelector(".isolayer--deco1"), {
       transform:
         "translateX(33vw) translateY(-340px) rotateX(45deg) rotateZ(45deg)",
       stackItemsAnimation: {
-        properties: function(pos) {
-          return {
-            translateZ: (pos + 1) * 30,
-            rotateZ: getRandomInt(-4, 4)
-          };
-        },
-        options: function(pos, itemstotal) {
-          return {
-            type: dynamics.bezier,
-            duration: 500,
-            points: [
-              {
-                x: 0,
-                y: 0,
-                cp: [
-                  {
-                    x: 0.2,
-                    y: 1
-                  }
-                ]
-              },
-              {
-                x: 1,
-                y: 1,
-                cp: [
-                  {
-                    x: 0.3,
-                    y: 1
-                  }
-                ]
-              }
-            ],
-            delay: (itemstotal - pos - 1) * 40
-          };
-        }
+        properties: isoGridProperties,
+        options: isoGridOptions2
       }
     });
-    // this.setState(prevState => {
-    //   const currentClasses = prevState.classes;
-    //   currentClasses.push("visible");
-
-    //   return {
-    //     classes: currentClasses,
-    //     updated: true
-    //   };
-    // });
   }
 
-  // shouldComponentUpdate() {
-  //   return false;
-  // }
   render() {
     console.log("portfolio hero - render()");
 
