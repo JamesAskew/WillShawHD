@@ -1,20 +1,27 @@
 import React, { Component } from "react";
 
-import dynamics from "dynamics.js";
-import classie from "classie";
-import imagesLoaded from "imagesloaded";
-import AnimOnScroll from "anime";
-import Masonry from "isotope-layout";
-
 import "../../../assets/css/isolayer.css";
 
-import imgOne from "../../../assets/images/thumbnails/isolayer10.jpg";
+// import imgOne from "../../../assets/images/thumbnails/isolayer10.jpg";
+import imgOne from "../../../assets/images/thumbnails/01.jpg";
+import imgTwo from "../../../assets/images/thumbnails/02.jpg";
+import imgThree from "../../../assets/images/thumbnails/03.jpg";
+import imgFour from "../../../assets/images/thumbnails/04.jpg";
+import imgFive from "../../../assets/images/thumbnails/05.jpg";
+import imgSix from "../../../assets/images/thumbnails/06.jpg";
+import imgSeven from "../../../assets/images/thumbnails/07.jpg";
+import imgEight from "../../../assets/images/thumbnails/08.jpg";
+import imgNine from "../../../assets/images/thumbnails/09.jpg";
+import imgTen from "../../../assets/images/thumbnails/10.jpg";
+import imgEleven from "../../../assets/images/thumbnails/11.jpg";
+import imgTwelve from "../../../assets/images/thumbnails/12.jpg";
 
 import {
   IsoGrid,
-  RequestAnimationFrame,
   isoGridProperties,
-  isoGridOptions2
+  isoGridOptions2,
+  animationHelpers,
+  imagesLoadedHelper
 } from "./PortfolioHeroHelpers";
 
 import {
@@ -31,8 +38,7 @@ class PortfolioHero extends Component {
     super(props);
 
     this.state = {
-      classes: ["isolayer", "isolayer--deco1", "isolayer--shadow"],
-      updated: false
+      classes: ["isolayer", "isolayer--deco1", "isolayer--shadow"]
     };
   }
 
@@ -40,42 +46,14 @@ class PortfolioHero extends Component {
     // debugger;
     console.log("portfolio hero - componentDidMount()");
 
-    var prefixes = "webkit moz ms o".split(" ");
-    // get unprefixed rAF and cAF, if present
-    var requestAnimationFrame = window.requestAnimationFrame;
-    var cancelAnimationFrame = window.cancelAnimationFrame;
-    // loop through vendor prefixes and get prefixed rAF and cAF
-    var prefix;
-    for (var i = 0; i < prefixes.length; i++) {
-      if (requestAnimationFrame && cancelAnimationFrame) {
-        break;
-      }
-      prefix = prefixes[i];
-      requestAnimationFrame =
-        requestAnimationFrame || window[prefix + "RequestAnimationFrame"];
-      cancelAnimationFrame =
-        cancelAnimationFrame ||
-        window[prefix + "CancelAnimationFrame"] ||
-        window[prefix + "CancelRequestAnimationFrame"];
-    }
-
-    if (!requestAnimationFrame || !cancelAnimationFrame) {
-      requestAnimationFrame = RequestAnimationFrame;
-
-      cancelAnimationFrame = function(id) {
-        window.clearTimeout(id);
-      };
-    }
+    animationHelpers(window);
 
     const please = () => {
-      console.log("please");
       this.setState(prevState => {
         const currentClasses = prevState.classes;
         currentClasses.push("visible");
-
         return {
-          classes: currentClasses,
-          updated: true
+          classes: currentClasses
         };
       });
     };
@@ -83,53 +61,7 @@ class PortfolioHero extends Component {
     IsoGrid.prototype.options = isoGridOptions;
 
     IsoGrid.prototype._init = function() {
-      var self = this;
-
-      imagesLoaded(this.gridEl, function() {
-        // initialize masonry
-        self.msnry = new Masonry(self.gridEl, {
-          itemSelector: ".grid__item",
-          isFitWidth: true
-        });
-
-        // the isolayer div element will be positioned fixed and will have a transformation based on the values defined in the HTML (data-attrs for the isolayer div element)
-        if (self.options.type === "scrollable") {
-          self.isolayerEl.style.position = "fixed";
-        }
-
-        self.isolayerEl.style.WebkitTransformStyle = self.isolayerEl.style.transformStyle =
-          "preserve-3d";
-
-        var transformValue =
-          self.options.perspective != 0
-            ? "perspective(" +
-              self.options.perspective +
-              "px) " +
-              self.options.transform
-            : self.options.transform;
-        self.isolayerEl.style.WebkitTransform = self.isolayerEl.style.transform = transformValue;
-
-        // create the div element that will force the height for scrolling
-        if (self.options.type === "scrollable") {
-          self._createPseudoScroller();
-        }
-
-        // init/bind events
-        self._initEvents();
-
-        // effects for loading grid elements:
-        if (self.options.type === "scrollable") {
-          new AnimOnScroll(self.gridEl, {
-            minDuration: 1,
-            maxDuration: 1.2,
-            viewportFactor: 0
-          });
-        }
-
-        // grid is "loaded" (all images are loaded)
-        self.options.onGridLoaded();
-        classie.add(self.gridEl, "grid--loaded");
-      });
+      imagesLoadedHelper(this.gridEl, this);
 
       IsoGrid.prototype._initEvents = function() {
         isoGridInitEvents(this);
@@ -167,8 +99,6 @@ class PortfolioHero extends Component {
 
     return (
       <div>
-        {this.state.updated ? <p>loaded</p> : <p>loading</p>}
-
         <div className="inner">
           <h2>WILL SHAW</h2>
           <p>Videographer | Editor | Photographer</p>
@@ -208,7 +138,7 @@ class PortfolioHero extends Component {
                 <div className="layer" />
                 <div className="layer" />
                 <div className="layer" />
-                <img className="grid__img layer" src={imgOne} alt="02" />
+                <img className="grid__img layer" src={imgTwo} alt="02" />
               </a>
             </li>
             <li className="grid__item">
@@ -216,7 +146,7 @@ class PortfolioHero extends Component {
                 <div className="layer" />
                 <div className="layer" />
                 <div className="layer" />
-                <img className="grid__img layer" src={imgOne} alt="02" />
+                <img className="grid__img layer" src={imgThree} alt="02" />
               </a>
             </li>
             <li className="grid__item">
@@ -224,7 +154,7 @@ class PortfolioHero extends Component {
                 <div className="layer" />
                 <div className="layer" />
                 <div className="layer" />
-                <img className="grid__img layer" src={imgOne} alt="02" />
+                <img className="grid__img layer" src={imgFour} alt="02" />
               </a>
             </li>
             <li className="grid__item">
@@ -232,7 +162,7 @@ class PortfolioHero extends Component {
                 <div className="layer" />
                 <div className="layer" />
                 <div className="layer" />
-                <img className="grid__img layer" src={imgOne} alt="02" />
+                <img className="grid__img layer" src={imgFive} alt="02" />
               </a>
             </li>
             <li className="grid__item">
@@ -240,7 +170,7 @@ class PortfolioHero extends Component {
                 <div className="layer" />
                 <div className="layer" />
                 <div className="layer" />
-                <img className="grid__img layer" src={imgOne} alt="02" />
+                <img className="grid__img layer" src={imgSix} alt="02" />
               </a>
             </li>
             <li className="grid__item">
@@ -248,7 +178,7 @@ class PortfolioHero extends Component {
                 <div className="layer" />
                 <div className="layer" />
                 <div className="layer" />
-                <img className="grid__img layer" src={imgOne} alt="02" />
+                <img className="grid__img layer" src={imgSeven} alt="02" />
               </a>
             </li>
             <li className="grid__item">
@@ -256,11 +186,7 @@ class PortfolioHero extends Component {
                 <div className="layer" />
                 <div className="layer" />
                 <div className="layer" />
-                <img
-                  className="grid__img layer"
-                  src="../../../assets/images/thumbnails/Changin-Plants-4-300x188.png"
-                  alt="02"
-                />
+                <img className="grid__img layer" src={imgEight} alt="02" />
               </a>
             </li>
             <li className="grid__item">
@@ -268,11 +194,7 @@ class PortfolioHero extends Component {
                 <div className="layer" />
                 <div className="layer" />
                 <div className="layer" />
-                <img
-                  className="grid__img layer"
-                  src="images/isolayer9.jpg"
-                  alt="02"
-                />
+                <img className="grid__img layer" src={imgNine} alt="02" />
               </a>
             </li>
             <li className="grid__item">
@@ -280,11 +202,7 @@ class PortfolioHero extends Component {
                 <div className="layer" />
                 <div className="layer" />
                 <div className="layer" />
-                <img
-                  className="grid__img layer"
-                  src="images/isolayer10.jpg"
-                  alt="02"
-                />
+                <img className="grid__img layer" src={imgTen} alt="02" />
               </a>
             </li>
             <li className="grid__item">
@@ -292,11 +210,7 @@ class PortfolioHero extends Component {
                 <div className="layer" />
                 <div className="layer" />
                 <div className="layer" />
-                <img
-                  className="grid__img layer"
-                  src="images/isolayer11.jpg"
-                  alt="02"
-                />
+                <img className="grid__img layer" src={imgEleven} alt="02" />
               </a>
             </li>
             <li className="grid__item">
@@ -304,11 +218,7 @@ class PortfolioHero extends Component {
                 <div className="layer" />
                 <div className="layer" />
                 <div className="layer" />
-                <img
-                  className="grid__img layer"
-                  src="images/isolayer12.jpg"
-                  alt="02"
-                />
+                <img className="grid__img layer" src={imgTwelve} alt="02" />
               </a>
             </li>
             <li className="grid__item">
@@ -316,11 +226,7 @@ class PortfolioHero extends Component {
                 <div className="layer" />
                 <div className="layer" />
                 <div className="layer" />
-                <img
-                  className="grid__img layer"
-                  src="images/isolayer13.jpg"
-                  alt="02"
-                />
+                <img className="grid__img layer" src={imgOne} alt="image" />
               </a>
             </li>
             <li className="grid__item">
@@ -328,11 +234,7 @@ class PortfolioHero extends Component {
                 <div className="layer" />
                 <div className="layer" />
                 <div className="layer" />
-                <img
-                  className="grid__img layer"
-                  src="images/isolayer14.jpg"
-                  alt="02"
-                />
+                <img className="grid__img layer" src={imgTwo} alt="02" />
               </a>
             </li>
             <li className="grid__item">
@@ -340,11 +242,7 @@ class PortfolioHero extends Component {
                 <div className="layer" />
                 <div className="layer" />
                 <div className="layer" />
-                <img
-                  className="grid__img layer"
-                  src="images/isolayer15.jpg"
-                  alt="02"
-                />
+                <img className="grid__img layer" src={imgThree} alt="02" />
               </a>
             </li>
             <li className="grid__item">
@@ -352,11 +250,7 @@ class PortfolioHero extends Component {
                 <div className="layer" />
                 <div className="layer" />
                 <div className="layer" />
-                <img
-                  className="grid__img layer"
-                  src="images/isolayer16.jpg"
-                  alt="02"
-                />
+                <img className="grid__img layer" src={imgFour} alt="02" />
               </a>
             </li>
             <li className="grid__item">
@@ -364,11 +258,7 @@ class PortfolioHero extends Component {
                 <div className="layer" />
                 <div className="layer" />
                 <div className="layer" />
-                <img
-                  className="grid__img layer"
-                  src="images/isolayer17.jpg"
-                  alt="02"
-                />
+                <img className="grid__img layer" src={imgFive} alt="02" />
               </a>
             </li>
             <li className="grid__item">
@@ -376,11 +266,7 @@ class PortfolioHero extends Component {
                 <div className="layer" />
                 <div className="layer" />
                 <div className="layer" />
-                <img
-                  className="grid__img layer"
-                  src="images/isolayer18.jpg"
-                  alt="02"
-                />
+                <img className="grid__img layer" src={imgThree} alt="02" />
               </a>
             </li>
             <li className="grid__item">
@@ -388,11 +274,7 @@ class PortfolioHero extends Component {
                 <div className="layer" />
                 <div className="layer" />
                 <div className="layer" />
-                <img
-                  className="grid__img layer"
-                  src="images/isolayer19.jpg"
-                  alt="02"
-                />
+                <img className="grid__img layer" src={imgFour} alt="02" />
               </a>
             </li>
             <li className="grid__item">
@@ -400,11 +282,7 @@ class PortfolioHero extends Component {
                 <div className="layer" />
                 <div className="layer" />
                 <div className="layer" />
-                <img
-                  className="grid__img layer"
-                  src="images/isolayer20.jpg"
-                  alt="02"
-                />
+                <img className="grid__img layer" src={imgFive} alt="02" />
               </a>
             </li>
           </ul>
