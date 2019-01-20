@@ -936,6 +936,7 @@ button[type="submit"] {
   padding-bottom: 6px;
   position: relative;
 }
+
 .recent-news .news-box .news-content a:hover {
   text-decoration: none;
 }
@@ -1793,7 +1794,8 @@ button[type="submit"] {
   height: 100%;
   z-index: 10; /* This must be at a higher index to the rest of your page content*/
   transform: translateZ(0);
-  background-color: rgba(#000, 0.15);
+  /* background-color: rgba(#000, 0.15); */
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 .c-modal {
@@ -1805,6 +1807,7 @@ button[type="submit"] {
   padding: 2.5em 1.5em 1.5em 1.5em;
   background-color: #ffffff;
   box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
@@ -1815,7 +1818,9 @@ button[type="submit"] {
     top: 50%;
     height: auto;
     transform: translate(-50%, -50%);
-    max-width: 30em;
+    /* max-width: 30em; */
+    max-width: 55em;
+    text-align: center;
     max-height: calc(100% - 1em);
   }
 }
@@ -1855,4 +1860,12 @@ button[type="submit"] {
   position: absolute !important;
   width: 1px !important;
   white-space: nowrap !important;
+}
+
+.news-content a {
+  font-size: 12px;
+  font-weight: 700;
+  color: #fed20f;
+  padding-bottom: 6px;
+  position: relative;
 }

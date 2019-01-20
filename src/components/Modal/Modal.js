@@ -24,16 +24,24 @@ class Modal extends Component {
 
   render() {
     const { isOpen } = this.state;
+
     return (
       <Fragment>
-        <ModalTrigger onClick={this.onOpen} />
+        <ModalTrigger
+          triggerImage={this.props.triggerImage}
+          onClick={this.onOpen}
+        >
+          {this.props.children}
+        </ModalTrigger>
         {isOpen && (
           <ModalContent
             onClick={this.onClose}
             onClickAway={this.onClickAway}
             onKeyDown={this.onKeyDown}
             modalRef={n => (this.modalNode = n)}
-          />
+          >
+            {this.props.children}
+          </ModalContent>
         )}
       </Fragment>
     );

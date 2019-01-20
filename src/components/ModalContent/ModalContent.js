@@ -20,7 +20,20 @@ const ModalContent = props => {
             <path d="M 10,10 L 30,30 M 30,10 L 10,30" />
           </svg>
         </button>
-        <div className="c-modal__body">CONTENT WILL GO HERE</div>
+        <div className="c-modal__body news-content">
+          <div className="titles">
+            <h3>The London Bierfest 2016</h3>
+          </div>
+
+          {props.children}
+          <br />
+          <p>
+            Enjoy low rates when you ship online or at The Coddle Join thousands
+            of businesses making the right shipping decisions with our
+            all-in-one intelligent freight platform
+          </p>
+          <a href="#">READ MORE</a>
+        </div>
       </div>
     </aside>,
     document.body

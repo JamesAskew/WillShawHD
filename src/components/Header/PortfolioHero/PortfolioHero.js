@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import YouTube from "react-youtube";
 
 import "../../../assets/css/isolayer.css";
 
@@ -32,6 +33,8 @@ import {
   isoGridScrollPage,
   isoGridCreatePseudoScroller
 } from "./isoGridHelpers";
+import Modal from "../../Modal/Modal";
+import ModalTriggerImage from "../../ModalTriggerImage/ModalTriggerImage";
 
 class PortfolioHero extends Component {
   constructor(props) {
@@ -95,7 +98,14 @@ class PortfolioHero extends Component {
   }
 
   render() {
-    console.log("portfolio hero - render()");
+    const opts = {
+      height: "390",
+      width: "640",
+      playerVars: {
+        // https://developers.google.com/youtube/player_parameters
+        autoplay: 1
+      }
+    };
 
     return (
       <div>
@@ -126,164 +136,104 @@ class PortfolioHero extends Component {
         <div className={this.state.classes.join(" ")}>
           <ul className="gridy">
             <li className="grid__item">
-              <a className="grid__link" href="https://www.google.com/">
-                <div className="layer" />
-                <div className="layer" />
-                <div className="layer" />
-                <img className="grid__img layer" src={imgOne} alt="image" />
-              </a>
+              <Modal triggerImage={<ModalTriggerImage img={imgOne} />}>
+                <YouTube videoId="nqpxPCWyqKI" opts={opts} />
+              </Modal>
             </li>
             <li className="grid__item">
-              <a className="grid__link" href="https://www.google.com/">
-                <div className="layer" />
-                <div className="layer" />
-                <div className="layer" />
-                <img className="grid__img layer" src={imgTwo} alt="02" />
-              </a>
+              <Modal triggerImage={<ModalTriggerImage img={imgTwo} />}>
+                <YouTube videoId="nqpxPCWyqKI" opts={opts} />
+              </Modal>
             </li>
             <li className="grid__item">
-              <a className="grid__link" href="https://www.google.com/">
-                <div className="layer" />
-                <div className="layer" />
-                <div className="layer" />
-                <img className="grid__img layer" src={imgThree} alt="02" />
-              </a>
+              <Modal triggerImage={<ModalTriggerImage img={imgThree} />}>
+                <YouTube videoId="nqpxPCWyqKI" opts={opts} />
+              </Modal>
             </li>
             <li className="grid__item">
-              <a className="grid__link" href="https://www.google.com/">
-                <div className="layer" />
-                <div className="layer" />
-                <div className="layer" />
-                <img className="grid__img layer" src={imgFour} alt="02" />
-              </a>
+              <Modal triggerImage={<ModalTriggerImage img={imgFour} />}>
+                <YouTube videoId="nqpxPCWyqKI" opts={opts} />
+              </Modal>
             </li>
             <li className="grid__item">
-              <a className="grid__link" href="https://www.google.com/">
-                <div className="layer" />
-                <div className="layer" />
-                <div className="layer" />
-                <img className="grid__img layer" src={imgFive} alt="02" />
-              </a>
+              <Modal triggerImage={<ModalTriggerImage img={imgFive} />}>
+                <YouTube videoId="nqpxPCWyqKI" opts={opts} />
+              </Modal>
             </li>
             <li className="grid__item">
-              <a className="grid__link" href="https://www.google.com/">
-                <div className="layer" />
-                <div className="layer" />
-                <div className="layer" />
-                <img className="grid__img layer" src={imgSix} alt="02" />
-              </a>
+              <Modal triggerImage={<ModalTriggerImage img={imgSix} />}>
+                <YouTube videoId="nqpxPCWyqKI" opts={opts} />
+              </Modal>
             </li>
             <li className="grid__item">
-              <a className="grid__link" href="https://www.google.com/">
-                <div className="layer" />
-                <div className="layer" />
-                <div className="layer" />
-                <img className="grid__img layer" src={imgSeven} alt="02" />
-              </a>
+              <Modal triggerImage={<ModalTriggerImage img={imgSeven} />}>
+                <YouTube videoId="nqpxPCWyqKI" opts={opts} />
+              </Modal>
             </li>
             <li className="grid__item">
-              <a className="grid__link" href="https://www.google.com/">
-                <div className="layer" />
-                <div className="layer" />
-                <div className="layer" />
-                <img className="grid__img layer" src={imgEight} alt="02" />
-              </a>
+              <Modal triggerImage={<ModalTriggerImage img={imgEight} />}>
+                <YouTube videoId="nqpxPCWyqKI" opts={opts} />
+              </Modal>
             </li>
             <li className="grid__item">
-              <a className="grid__link" href="https://www.google.com/">
-                <div className="layer" />
-                <div className="layer" />
-                <div className="layer" />
-                <img className="grid__img layer" src={imgNine} alt="02" />
-              </a>
+              <Modal triggerImage={<ModalTriggerImage img={imgNine} />}>
+                <YouTube videoId="nqpxPCWyqKI" opts={opts} />
+              </Modal>
             </li>
             <li className="grid__item">
-              <a className="grid__link" href="https://www.google.com/">
-                <div className="layer" />
-                <div className="layer" />
-                <div className="layer" />
-                <img className="grid__img layer" src={imgTen} alt="02" />
-              </a>
+              <Modal triggerImage={<ModalTriggerImage img={imgTen} />}>
+                <YouTube videoId="nqpxPCWyqKI" opts={opts} />
+              </Modal>
             </li>
             <li className="grid__item">
-              <a className="grid__link" href="https://www.google.com/">
-                <div className="layer" />
-                <div className="layer" />
-                <div className="layer" />
-                <img className="grid__img layer" src={imgEleven} alt="02" />
-              </a>
+              <Modal triggerImage={<ModalTriggerImage img={imgEleven} />}>
+                <YouTube videoId="nqpxPCWyqKI" opts={opts} />
+              </Modal>
             </li>
             <li className="grid__item">
-              <a className="grid__link" href="https://www.google.com/">
-                <div className="layer" />
-                <div className="layer" />
-                <div className="layer" />
-                <img className="grid__img layer" src={imgTwelve} alt="02" />
-              </a>
+              <Modal triggerImage={<ModalTriggerImage img={imgTwelve} />}>
+                <YouTube videoId="nqpxPCWyqKI" opts={opts} />
+              </Modal>
             </li>
             <li className="grid__item">
-              <a className="grid__link" href="https://www.google.com/">
-                <div className="layer" />
-                <div className="layer" />
-                <div className="layer" />
-                <img className="grid__img layer" src={imgOne} alt="image" />
-              </a>
+              <Modal triggerImage={<ModalTriggerImage img={imgOne} />}>
+                <YouTube videoId="nqpxPCWyqKI" opts={opts} />
+              </Modal>
             </li>
             <li className="grid__item">
-              <a className="grid__link" href="https://www.google.com/">
-                <div className="layer" />
-                <div className="layer" />
-                <div className="layer" />
-                <img className="grid__img layer" src={imgTwo} alt="02" />
-              </a>
+              <Modal triggerImage={<ModalTriggerImage img={imgTwo} />}>
+                <YouTube videoId="nqpxPCWyqKI" opts={opts} />
+              </Modal>
             </li>
             <li className="grid__item">
-              <a className="grid__link" href="https://www.google.com/">
-                <div className="layer" />
-                <div className="layer" />
-                <div className="layer" />
-                <img className="grid__img layer" src={imgThree} alt="02" />
-              </a>
+              <Modal triggerImage={<ModalTriggerImage img={imgThree} />}>
+                <YouTube videoId="nqpxPCWyqKI" opts={opts} />
+              </Modal>
             </li>
             <li className="grid__item">
-              <a className="grid__link" href="https://www.google.com/">
-                <div className="layer" />
-                <div className="layer" />
-                <div className="layer" />
-                <img className="grid__img layer" src={imgFour} alt="02" />
-              </a>
+              <Modal triggerImage={<ModalTriggerImage img={imgFour} />}>
+                <YouTube videoId="nqpxPCWyqKI" opts={opts} />
+              </Modal>
             </li>
             <li className="grid__item">
-              <a className="grid__link" href="https://www.google.com/">
-                <div className="layer" />
-                <div className="layer" />
-                <div className="layer" />
-                <img className="grid__img layer" src={imgFive} alt="02" />
-              </a>
+              <Modal triggerImage={<ModalTriggerImage img={imgFive} />}>
+                <YouTube videoId="nqpxPCWyqKI" opts={opts} />
+              </Modal>
             </li>
             <li className="grid__item">
-              <a className="grid__link" href="https://www.google.com/">
-                <div className="layer" />
-                <div className="layer" />
-                <div className="layer" />
-                <img className="grid__img layer" src={imgThree} alt="02" />
-              </a>
+              <Modal triggerImage={<ModalTriggerImage img={imgSix} />}>
+                <YouTube videoId="nqpxPCWyqKI" opts={opts} />
+              </Modal>
             </li>
             <li className="grid__item">
-              <a className="grid__link" href="https://www.google.com/">
-                <div className="layer" />
-                <div className="layer" />
-                <div className="layer" />
-                <img className="grid__img layer" src={imgFour} alt="02" />
-              </a>
+              <Modal triggerImage={<ModalTriggerImage img={imgSeven} />}>
+                <YouTube videoId="nqpxPCWyqKI" opts={opts} />
+              </Modal>
             </li>
             <li className="grid__item">
-              <a className="grid__link" href="https://www.google.com/">
-                <div className="layer" />
-                <div className="layer" />
-                <div className="layer" />
-                <img className="grid__img layer" src={imgFive} alt="02" />
-              </a>
+              <Modal triggerImage={<ModalTriggerImage img={imgEight} />}>
+                <YouTube videoId="nqpxPCWyqKI" opts={opts} />
+              </Modal>
             </li>
           </ul>
         </div>

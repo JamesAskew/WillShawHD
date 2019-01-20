@@ -92,8 +92,11 @@ function isoGridInitEvents(sender) {
 }
 
 function isoGridExpandSubItems(sender, item) {
+  console.log(sender);
+  console.log(item);
+
   var self = sender,
-    itemLink = item.querySelector("a"),
+    itemLink = item.querySelector("div"),
     subItems = [].slice.call(itemLink.querySelectorAll(".layer")),
     subItemsTotal = subItems.length;
 
@@ -110,7 +113,7 @@ function isoGridExpandSubItems(sender, item) {
 }
 
 function isoGridCollapseSubItems(item) {
-  var itemLink = item.querySelector("a");
+  var itemLink = item.querySelector("div");
   [].slice
     .call(itemLink.querySelectorAll(".layer"))
     .forEach(function(subitem, pos) {
