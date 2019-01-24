@@ -46,9 +46,6 @@ class PortfolioHero extends Component {
   }
 
   componentDidMount() {
-    // debugger;
-    console.log("portfolio hero - componentDidMount()");
-
     animationHelpers(window);
 
     const please = () => {
@@ -156,7 +153,14 @@ class PortfolioHero extends Component {
               </Modal>
             </li>
             <li className="grid__item">
-              <Modal triggerImage={<ModalTriggerImage img={imgFive} />}>
+              <Modal
+                triggerImage={
+                  <ModalTriggerImage
+                    img={imgFive}
+                    imgAlt="alt for number five"
+                  />
+                }
+              >
                 <YouTube videoId="nqpxPCWyqKI" opts={opts} />
               </Modal>
             </li>

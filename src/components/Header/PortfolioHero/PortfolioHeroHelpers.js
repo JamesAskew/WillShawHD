@@ -152,7 +152,7 @@ function imagesLoadedHelper(gridEl, sender) {
       "preserve-3d";
 
     var transformValue =
-      self.options.perspective != 0
+      self.options.perspective !== 0
         ? "perspective(" +
           self.options.perspective +
           "px) " +
