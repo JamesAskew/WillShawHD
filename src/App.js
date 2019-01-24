@@ -13,6 +13,7 @@ import About from "./components/pages/About/About";
 import Portfolio from "./components/pages/Portfolio/Portfolio";
 import Contact from "./components/pages/Contact/Contact";
 import Footer from "./components/Footer/Footer";
+import FooterContactInfo from "./components/Footer/FooterContactInfo";
 
 class App extends Component {
   render() {
@@ -64,6 +65,7 @@ class App extends Component {
             )}
           />
 
+          <FooterContactInfo />
           <Footer />
         </div>
       </Router>
