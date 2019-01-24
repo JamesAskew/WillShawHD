@@ -1,0 +1,30 @@
+/* FOOTER BAR */
+.footer-bar {
+  width: 100%;
+  float: left;
+  background: #99a4be;
+  padding: 50px 0;
+  color: #fff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.footer-bar figure {
+  width: 40px;
+  float: left;
+  margin-bottom: 0;
+  margin-right: 15px;
+}
+.footer-bar figure img {
+  width: 100%;
+}
+.footer-bar h4 {
+  font-size: 16px;
+  margin-top: 4px;
+  margin-bottom: 1px;
+  font-family: "Fjalla One";
+}
+.footer-bar address {
+  display: block;
+  font-size: 12px;
+  font-weight: 300;
+  margin: 0;
+}

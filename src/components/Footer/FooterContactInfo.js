@@ -4,6 +4,8 @@ import emailIcon from "../../assets/images/contact-icon01.png";
 import phoneIcon from "../../assets/images/contact-icon02.png";
 import markerIcon from "../../assets/images/contact-icon04.png";
 
+import "./footerContactInfo.css";
+
 const FooterContactInfo = () => {
   return (
     <section className="footer-bar">

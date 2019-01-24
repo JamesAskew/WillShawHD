@@ -1,6 +1,6 @@
 import React from "react";
 import lightLogo from "../../assets/images/logo-light.png";
-
+import "./footer.css";
 const Footer = () => {
   return (
     <footer className="footer">
