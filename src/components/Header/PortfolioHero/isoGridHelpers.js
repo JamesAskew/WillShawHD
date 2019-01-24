@@ -92,9 +92,6 @@ function isoGridInitEvents(sender) {
 }
 
 function isoGridExpandSubItems(sender, item) {
-  console.log(sender);
-  console.log(item);
-
   var self = sender,
     itemLink = item.querySelector("div"),
     subItems = [].slice.call(itemLink.querySelectorAll(".layer")),

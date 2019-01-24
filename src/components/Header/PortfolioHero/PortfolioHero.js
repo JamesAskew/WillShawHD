@@ -46,9 +46,6 @@ class PortfolioHero extends Component {
   }
 
   componentDidMount() {
-    // debugger;
-    console.log("portfolio hero - componentDidMount()");
-
     animationHelpers(window);
 
     const please = () => {
