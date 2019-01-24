@@ -1220,32 +1220,6 @@ button[type="submit"] {
   font-weight: 600;
 }
 
-/* QUOTE BAR */
-.quote-bar {
-  width: 100%;
-  float: left;
-  padding: 70px 0;
-  text-align: center;
-  background: url(./assets/images/polygon-bg.svg) center no-repeat;
-  background-size: cover;
-}
-.quote-bar h4 {
-  font-size: 50px;
-  font-family: "Fjalla One";
-  color: #fff;
-  margin-top: 0;
-}
-.quote-bar p {
-  padding: 0 10%;
-  color: #fff;
-  line-height: 26px;
-  margin-bottom: 50px;
-}
-.quote-bar .ghost-btn span {
-  background: none;
-  -webkit-text-fill-color: #ffffff;
-}
-
 /* FOOTER BAR */
 .footer-bar {
   width: 100%;
